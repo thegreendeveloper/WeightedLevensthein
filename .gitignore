@@ -1,0 +1,9 @@
+
+.classpath
+.project
+.settings/org.eclipse.jdt.core.prefs
+*.class
+bin/weight/files/deletion.csv
+bin/weight/files/insertion.csv
+bin/weight/files/substitution.csv
+bin/weight/files/transposition.csv
