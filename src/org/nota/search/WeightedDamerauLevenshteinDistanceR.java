@@ -1,4 +1,4 @@
-package org.nota.lucene.search;
+package org.nota.search;
 import org.apache.lucene.search.spell.StringDistance;
 
 public final class WeightedDamerauLevenshteinDistanceR implements StringDistance {
@@ -6,7 +6,7 @@ public final class WeightedDamerauLevenshteinDistanceR implements StringDistance
 	private Weights weights;
 
 	public WeightedDamerauLevenshteinDistanceR() {
-		weights = Controller.initiateWeights("weight/files/");
+		weights = new Weights();
 	}
 
 	@Override
