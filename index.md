@@ -1,37 +1,27 @@
-## Welcome to GitHub Pages
+## Idea
 
-You can use the [editor on GitHub](https://github.com/thegreendeveloper/WeightedLevensthein/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
+Implementation of weighted Levensthein and Damerau-Levensthein distances integrated into the Solr platform. The exemplefied weights setup is based on misspelling tendencies in the Danish written language. It is possible to setup insertion, deletion, substitution or transposition rules in whatever language is preferred by changing the "hardcoded" values in the CustomWeightSetup class. 
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+In relation to information about the distance metrics I refer to [Levenshtein distance](https://en.wikipedia.org/wiki/Levenshtein_distance) and [Damerau-Levenshtein distance](https://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance). 
 
-### Markdown
+### Distance metrics
+Three versions of the distance metrics have been implemented:
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+* Levenshtein distance
+* Restricted Damerau-Levenshtein distance
+* True Damerau-Levenshtein distance
 
-```markdown
-Syntax highlighted code block
+The distance metrics have been used to test spell checker performance in Solr. The True Damerau-Levenshtein distance metrics is in average 3,5 times as slow as the std. Levensthein method and I can therefore not recommend using this method in a spell checker relation. 
 
-# Header 1
-## Header 2
-### Header 3
 
-- Bulleted
-- List
+### Weights
+The weights are based on extensive research in the Danish spelling tendencies but also by analysing log data of the customer the product was developed for. As the user segment show a tendency to mistake some letters for others, there is a specific emphasis on substitution errors in the weights setup. 
 
-1. Numbered
-2. List
+### Installation
+The following steps should be made in order to use the distance metrics in your Solr application:
 
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/thegreendeveloper/WeightedLevensthein/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+* In order to compile the module it is nessesary to add lucene-suggest-VERSIONNO.jar to the build path
+  * The jar can be found online or in your current Solr solution in the ..Solr-VERSIONNO\server\solr-webapp\webapp\WEB-INF\lib\ folder
+* Export the project as jar file to ..Solr-VERSIONNO\contrib\extraction\lib\
+* Change the setup, specificly the "distanceMeasure" parameter, in solrconfig.xml or solrconfig_extra.xml (or where ever your spell checker setup is located)
+* Restart Solr (evt. re-build the spell checker index)
