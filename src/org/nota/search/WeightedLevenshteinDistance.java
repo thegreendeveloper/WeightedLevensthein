@@ -1,7 +1,10 @@
 package org.nota.search;
 
 import org.apache.lucene.search.spell.*;
-
+/*
+ * Implementation of the Levensthein distance using 
+ * the dynamic programming apporach (O(nm) time)
+ * */
 public final class WeightedLevenshteinDistance implements StringDistance {
 
 	private Weights weights;

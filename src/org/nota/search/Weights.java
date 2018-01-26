@@ -2,20 +2,28 @@ package org.nota.search;
 
 import java.util.HashMap;
 
+/*
+ * This class contains the weights mapping of the four types of operations the Damerau-Levensthein
+ * distance implements. 
+ * */
 public class Weights {
 
-	HashMap<Character, Float> insertion;
-	HashMap<Character, Float> deletion;
-	Weight substitution;
-	Weight transposition;
+	private HashMap<Character, Float> insertion;
+	private HashMap<Character, Float> deletion;
+	private Weight substitution;
+	private Weight transposition;
 
 	float DEFAULT = 1.0f;
 
 	public Weights() {
-		insertion = StaticWeightSetup.getInsertionWeights();
-		deletion = StaticWeightSetup.getDeletionsSetup();
-		substitution = StaticWeightSetup.getSubstitutionSetup();
-		transposition = StaticWeightSetup.getTranspositionSetup();
+		initialize();
+	}
+
+	private void initialize() {
+		insertion = CustomWeightSetup.getInsertionWeights();
+		deletion = CustomWeightSetup.getDeletionsSetup();
+		substitution = CustomWeightSetup.getSubstitutionSetup();
+		transposition = CustomWeightSetup.getTranspositionSetup();
 	}
 
 	public Weight getSubstitution() {

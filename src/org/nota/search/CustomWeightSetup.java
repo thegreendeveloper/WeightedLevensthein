@@ -3,7 +3,11 @@ package org.nota.search;
 import java.util.HashMap;
 import java.util.HashSet;
 
-public class StaticWeightSetup {
+/*
+ * This is the custom weights setup. This has been setup specifically based on
+ * common Danish misspelling tendencies. 
+ * */
+public class CustomWeightSetup {
 
 	public static HashMap<Character, Float> getDeletionsSetup() {
 		HashMap<Character, Float> map = new HashMap<Character, Float>();
@@ -80,8 +84,7 @@ public class StaticWeightSetup {
 		map.add(m);
 		m = new Mapping('å', 'u', 0.8f);
 
-		Weight weight = new Weight();
-		weight.setWeights(map);
+		Weight weight = new Weight(map);
 		return weight;
 	}
 
@@ -97,8 +100,7 @@ public class StaticWeightSetup {
 		m = new Mapping('c', 'h', 0.8f);
 		map.add(m);
 
-		Weight weight = new Weight();
-		weight.setWeights(map);
+		Weight weight = new Weight(map);
 		return weight;
 	}
 

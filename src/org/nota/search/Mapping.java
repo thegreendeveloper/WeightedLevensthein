@@ -1,40 +1,32 @@
 package org.nota.search;
-
+/*
+ * This object contains mapping-info of two characters i.e.
+ * It contains the characters and a weight. 
+ * 
+ * */
 public class Mapping {
 
-	char a;
-	char b;
+	private char a;
+	private char b;
+	private Float weight;
 
 	public Mapping(char a, char b, Float weight) {
 		this.a = a;
 		this.b = b;
 		this.weight = weight;
-		
-	}
-	
-	public char getA() {
-		return a;
+
 	}
 
-	public void setA(char a) {
-		this.a = a;
+	public char getA() {
+		return a;
 	}
 
 	public char getB() {
 		return b;
 	}
 
-	public void setB(char b) {
-		this.b = b;
-	}
-
 	public Float getWeight() {
 		return weight;
 	}
 
-	public void setWeight(Float weight) {
-		this.weight = weight;
-	}
-
-	Float weight;
 }

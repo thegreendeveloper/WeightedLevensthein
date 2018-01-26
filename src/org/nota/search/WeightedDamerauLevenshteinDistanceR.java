@@ -1,6 +1,10 @@
 package org.nota.search;
 import org.apache.lucene.search.spell.StringDistance;
 
+/*This class implements the restricted Damerau-Levensthein method
+ * also known as Optimal String Alignment
+ * 
+ * */
 public final class WeightedDamerauLevenshteinDistanceR implements StringDistance {
 
 	private Weights weights;

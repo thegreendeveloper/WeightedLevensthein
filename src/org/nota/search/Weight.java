@@ -1,17 +1,24 @@
 package org.nota.search;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.Set;
 
+/*
+ * This object contains the weight information of two character mappings (i.e. substitutions or transpositions)
+ * The object contains a charIndex and a weights matrix that ensures constant lookup (3 lookups per mapping)
+ * and thereby avoids iterating through the matrix
+ * */
 public class Weight {
 
 	private HashMap<Character, Integer> charIndex;
 	private float[][] matrix;
 	private float DEFAULT = 1.0f;
 
-	public void setWeights(HashSet<Mapping> map) {
+	public Weight(Set<Mapping> map) {
+		initialize(map);
+	}
+
+	private void initialize(Set<Mapping> map) {
 		charIndex = new HashMap<Character, Integer>();
 
 		int index = 0;
